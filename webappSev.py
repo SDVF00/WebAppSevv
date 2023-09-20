@@ -46,24 +46,7 @@ df_reviews = pd.read_sql_query(
     """,
     con=engine
 )
-
-def min_max_dates(df_reviews):
-    min_date_df = df_reviews.review_date.min()
-    max_date_df = df_reviews.review_date.max()
-    return min_date_df, max_date_df
-
-min_date_df, max_date_df = min_max_dates(df_reviews)
-
-min_date, max_date = st.slider(
-    min_value=min_date_df,
-    max_value=max_date_df,
-    label="Select dates",
-    value=(date(2022, 1, 1), date(2022, 12, 31))
-)
-
 #-Slider------------------------------------------------------
-
-#st.slider("Date", 2022-1-1, 2023-31-1, 1)
 
 #-First----------------------------------------------------------------------------------------------------------------#
 avg_reviews = df_reviews.groupby(["location_city"], as_index=False)["n_reviews"].mean()
